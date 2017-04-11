@@ -5,7 +5,7 @@ Express / mongoDb URL shortener microservice
 https://tsurl.herokuapp.com/
 
 ## How to use
-Create a new shortened url : to https://google.fr, for exemple
+Create a new shortened url : to https://github.com/tsauvajon/, for exemple
 
 https://tsurl.herokuapp.com/new/https://github.com/tsauvajon/
 
