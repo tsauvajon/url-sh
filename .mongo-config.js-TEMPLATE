@@ -1,0 +1,6 @@
+const mongoConfig = {
+  password: '',
+  db: '',
+};
+
+module.exports = mongoConfig;

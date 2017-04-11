@@ -3,13 +3,19 @@ const router = express.Router();
 const mongodb = require('mongodb');
 const shortid = require('shortid');
 const validUrl = require('valid-url');
-const mongoConfig = require('../.mongo-config')
 
-const tsurlConfig = mongoConfig || {
-  password: process.env.MONGO_PASSWORD,
-  db: process.env.MONGO_DB,
-};
-const mongoConnectionString = `mongodb://tsauvajon:${tsurlConfig.password}@cluster0-shard-00-00-lbcnx.mongodb.net:27017,cluster0-shard-00-01-lbcnx.mongodb.net:27017,cluster0-shard-00-02-lbcnx.mongodb.net:27017/${tsurlConfig.db}?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`
+let mongoConfig;
+try {
+  mongoConfig = require('../.mongo-config');
+} catch (ex) {
+  console.log(`Couldn't import mongo-config. Using ENV variables instead.`);
+  mongoConfig = {
+    password: process.env.MONGO_PASSWORD,
+    db: process.env.MONGO_DB,
+  };
+}  
+
+const mongoConnectionString = `mongodb://tsauvajon:${mongoConfig.password}@cluster0-shard-00-00-lbcnx.mongodb.net:27017,cluster0-shard-00-01-lbcnx.mongodb.net:27017,cluster0-shard-00-02-lbcnx.mongodb.net:27017/${mongoConfig.db}?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`
 const MongoClient = mongodb.MongoClient;
 
 /* GET home page. */
