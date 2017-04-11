@@ -13,7 +13,7 @@ try {
     password: process.env.MONGO_PASSWORD,
     db: process.env.MONGO_DB,
   };
-}  
+}
 
 const mongoConnectionString = `mongodb://tsauvajon:${mongoConfig.password}@cluster0-shard-00-00-lbcnx.mongodb.net:27017,cluster0-shard-00-01-lbcnx.mongodb.net:27017,cluster0-shard-00-02-lbcnx.mongodb.net:27017/${mongoConfig.db}?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`
 const MongoClient = mongodb.MongoClient;
@@ -36,7 +36,7 @@ router.get('/new/:url(*)', (req, res, next) => {
         collection.findOne({ url }, { short: 1, _id: 0 }, (err, doc) => {
             if (doc !== null) {
               const shortened = `${req.get('host')}/${doc.short}`;
-              return res.status(304).json({
+              return res.json({
                 url,
                 shortened,
               });
@@ -53,7 +53,7 @@ router.get('/new/:url(*)', (req, res, next) => {
                 shortened,
               })
             } else {
-              return res.status(400).json({
+              return res.json({
                 error: `The URL is malformed or the site doesn't exist`,
               })
             }
