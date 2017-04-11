@@ -9,7 +9,7 @@ const tsurlConfig = mongoConfig || {
   password: process.env.MONGO_PASSWORD,
   db: process.env.MONGO_DB,
 };
-const mongoConnectionString = `mongodb://tsauvajon:${mongoConfig.password}@cluster0-shard-00-00-lbcnx.mongodb.net:27017,cluster0-shard-00-01-lbcnx.mongodb.net:27017,cluster0-shard-00-02-lbcnx.mongodb.net:27017/${mongoConfig.db}?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`
+const mongoConnectionString = `mongodb://tsauvajon:${tsurlConfig.password}@cluster0-shard-00-00-lbcnx.mongodb.net:27017,cluster0-shard-00-01-lbcnx.mongodb.net:27017,cluster0-shard-00-02-lbcnx.mongodb.net:27017/${tsurlConfig.db}?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin`
 const MongoClient = mongodb.MongoClient;
 
 /* GET home page. */
